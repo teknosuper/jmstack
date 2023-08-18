@@ -40,14 +40,13 @@ class ShowAlbumAction extends CAction
                         $img=$path.'/images/www/no_image.jpg';
                     }
 
-                    $tran = Translattions::model()->find(" model_id =".$item->album_id,"and table_name = 'album' and attribute = 'album_name' ");
-                    //var_dump($tran);exit;
-                    if(count($tran)>0)
-                    {
+                    $tran = Translattions::model()->find("model_id = :album_id AND table_name = 'album' AND attribute = 'album_name'", array(':album_id' => $item->album_id));
+                    if ($tran !== null) {
                         $name_telugu = $tran->value;
-                    }
-                    else
+                    } else {
                         $name_telugu = '';
+                    }
+
 
                     $data[]=array(
                         'id'=>$item->album_id,

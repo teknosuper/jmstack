@@ -134,52 +134,51 @@ $('.search-form form').submit(function(){
         ),
 //        'album_id',
         array(
-            'header'=>'Series',
-            'name'=>'album_id',
-            'type'=>'raw',
-            'value'=>function($data)
-                {
-                    if(strlen($data->album_id)>0)
-                    {
-                        $id=$data->album_id;
-                        $album= Album::model()->findByPk($id);
-                        if(count($album)>0)
-                            return $album->album_name;
-                        else
-                            return '';
-                    }
-                    else
+            'header' => 'Series',
+            'name' => 'album_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                if (strlen($data->album_id) > 0) {
+                    $id = $data->album_id;
+                    $album = Album::model()->findByPk($id);
+
+                    if ($album !== null) { // Check if $album is not null
+                        return $album->album_name;
+                    } else {
                         return '';
-                },
-            'filter'=>CHtml::listData(Album::model()->findAll(), 'album_id', 'album_name'),
-            'htmlOptions'=>array('style'=>'text-align: center;'),
+                    }
+                } else {
+                    return '';
+                }
+            },
+            'filter' => CHtml::listData(Album::model()->findAll(), 'album_id', 'album_name'),
+            'htmlOptions' => array('style' => 'text-align: center;'),
         ),
+
 
         array(
-            'header'=>'Category',
-            'name'=>'category_id',
-            'type'=>'raw',
-            'value'=>function($data)
-                {
-                    if(strlen($data->category_id)>0)
-                    {
-                        $id=$data->category_id;
-                        $category= Category::model()->findByPk($id);
-                        if(count($category)>0)
-                        {
-                            $name=$category->category_name;
-                            return $name;
-                        }
+            'header' => 'Category',
+            'name' => 'category_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                if (strlen($data->category_id) > 0) {
+                    $id = $data->category_id;
+                    $category = Category::model()->findByPk($id);
 
-                        else
-                            return '';
-                    }
-                    else
+                    if ($category !== null) { // Check if $category is not null
+                        $name = $category->category_name;
+                        return $name;
+                    } else {
                         return '';
-                },
-            'filter'=>CHtml::listData(Category::model()->findAll(), 'category_id', 'category_name'),
-            'htmlOptions'=>array('style'=>'text-align: center;'),
+                    }
+                } else {
+                    return '';
+                }
+            },
+            'filter' => CHtml::listData(Category::model()->findAll(), 'category_id', 'category_name'),
+            'htmlOptions' => array('style' => 'text-align: center;'),
         ),
+
         array(
             'header'=>'Most Favorties',
             'name'=>'isTopsong',

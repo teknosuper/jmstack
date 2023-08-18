@@ -18,12 +18,12 @@ class DeviceRegisterAction extends CAction
             exit;
         }
 
-        $old_device = Device::model()->find(' ime = "'.$ime.'" ');
-        if (count($old_device) > 0) {
+        $old_device = Device::model()->find('ime = "'.$ime.'"');
+        if ($old_device !== null) {
             $old_device->gcm_id = $gcm;
             $old_device->type = $type;
             $old_device->status = $status;
-            //$old_device->user_id= isset($userId) ? $userId : 0;
+            //$old_device->user_id = isset($userId) ? $userId : 0;
             $old_device->save();
             ApiController::sendResponse(200, CJSON::encode(array(
                 'status' => Constants::SUCCESS,
@@ -35,7 +35,7 @@ class DeviceRegisterAction extends CAction
             $device->ime = $ime;
             $device->type = $type;
             $device->status = $status;
-            $device->dateCreated = date('Y-m-d H:i:s',time());
+            $device->dateCreated = date('Y-m-d H:i:s', time());
             //$device->user_id = isset($userId) ? $userId : '';
 
             if ($device->save()) {
@@ -51,6 +51,7 @@ class DeviceRegisterAction extends CAction
                 )));
             }
         }
+
 
     }
 }

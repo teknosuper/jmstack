@@ -70,24 +70,24 @@ $this->menu=array(
         ],*/
 //        'album_id',
         array(
-            'header'=>'Series',
-            'name'=>'album_id',
-            'type'=>'raw',
-            'value'=>function($data)
-                {
-                    $id=$data->album_id;
-                    if(strlen($id)>0)
-                    {
-                        $album= Album::model()->findByPk($id);
-                        if(count($album)>0)
-                            return $album->album_name;
-                        else
-                            return 'Updating';
-                    }
-                    else
+            'header' => 'Series',
+            'name' => 'album_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                $id = $data->album_id;
+                if (strlen($id) > 0) {
+                    $album = Album::model()->findByPk($id);
+                    if ($album !== null) { // Check if $album is not null
+                        return $album->album_name;
+                    } else {
                         return 'Updating';
+                    }
+                } else {
+                    return 'Updating';
                 }
+            },
         ),
+
         /*array(
             'header'=>'Author Name',
             'name'=>'author_id',
@@ -114,30 +114,27 @@ $this->menu=array(
                 }
         ),*/
         array(
-            'header'=>'Category Name',
-            'name'=>'category_id',
-            'type'=>'raw',
-            'value'=>function($data)
-                {
-                    if(strlen($data->category_id)>0){
-                        $id=$data->category_id;
-                        if(strlen($id)>0)
-                        {
-                            $category= Category::model()->findByPk($id);
-                            if(count($category)>0)
-                            {
-                                $name=$category->category_name;
-                                return $name;
-                            }
-                            else
-                                return 'Updating';
+            'header' => 'Category Name',
+            'name' => 'category_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                if (strlen($data->category_id) > 0) {
+                    $id = $data->category_id;
+                    if (strlen($id) > 0) {
+                        $category = Category::model()->findByPk($id);
+                        if ($category !== null) { // Check if $category is not null
+                            $name = $category->category_name;
+                            return $name;
+                        } else {
+                            return 'Updating';
                         }
-                        else
-                            return  'Updating';
-
+                    } else {
+                        return 'Updating';
                     }
                 }
+            },
         ),
+
 //		'download',
         array(
 

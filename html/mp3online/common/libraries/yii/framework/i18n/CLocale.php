@@ -3,9 +3,9 @@
  * CLocale class file.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright 2008-2013 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 /**
@@ -354,7 +354,7 @@ class CLocale extends CComponent
 		if(($underscorePosition=strpos($id, '_'))!==false)
 		{
 			$subTag = explode('_', $id);
-			// script sub tags can be distigused from territory sub tags by length
+			// script sub tags can be distinguished from territory sub tags by length
 			if (strlen($subTag[1])===4)
 			{
 				$id = $subTag[1];
@@ -386,7 +386,7 @@ class CLocale extends CComponent
 		if (($underscorePosition=strpos($id, '_'))!== false)
 		{
 			$subTag = explode('_', $id);
-			// territory sub tags can be distigused from script sub tags by length
+			// territory sub tags can be distinguished from script sub tags by length
 			if (isset($subTag[2]) && strlen($subTag[2])<4)
 			{
 				$id = $subTag[2];
@@ -417,7 +417,7 @@ class CLocale extends CComponent
 	 */
 	public function getLocaleDisplayName($id=null, $category='languages')
 	{
-		$id = $this->getCanonicalID($id);
+		$id = $this->getCanonicalID((string)$id);
 		if (($category == 'languages') && (isset($this->_data[$category][$id])))
 		{
 			return $this->_data[$category][$id];

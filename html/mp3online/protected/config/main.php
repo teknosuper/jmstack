@@ -74,10 +74,10 @@ return array(
 
         // uncomment the following to use a MySQL database
         'db' => array(
-            'connectionString' => 'mysql:host=172.31.0.29;dbname=nqappdb',
+            'connectionString' => 'mysql:host=localhost;dbname=nqappdb',
             'emulatePrepare' => true,
-            'username' => 'nqappdbuser',
-            'password' => 'CHANGEME',
+            'username' => 'root',
+            'password' => 'teknowdm05',
             'charset' => 'utf8',
         ),
 

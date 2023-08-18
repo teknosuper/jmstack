@@ -35,14 +35,13 @@ class ShowCategoryAction extends CAction
 					$img=$path.'/images/www/no_image.jpg';
 				}
 
-				$tran = Translattions::model()->find(" model_id =".$item->category_id,"and table_name = 'category' and attribute = 'category_name' ");
-				//var_dump($tran);exit;
-				if(count($tran)>0)
-				{
-					$name_telugu = $tran->value;
+				$tran = Translattions::model()->find("model_id = :category_id AND table_name = 'category' AND attribute = 'category_name'", array(':category_id' => $item->category_id));
+				if ($tran !== null) {
+				    $name_telugu = $tran->value;
+				} else {
+				    $name_telugu = '';
 				}
-				else
-					$name_telugu = '';
+
 
 				$countSub =  Category::model()->count('parentId ='.$item->category_id);
 

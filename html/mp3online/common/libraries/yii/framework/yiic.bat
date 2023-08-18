@@ -6,9 +6,9 @@ rem
 rem  This is the bootstrap script for running yiic on Windows.
 rem
 rem  @author Qiang Xue <qiang.xue@gmail.com>
-rem  @link http://www.yiiframework.com/
+rem  @link https://www.yiiframework.com/
 rem  @copyright 2008 Yii Software LLC
-rem  @license http://www.yiiframework.com/license/
+rem  @license https://www.yiiframework.com/license/
 rem  @version $Id$
 rem -------------------------------------------------------------
 
@@ -16,7 +16,7 @@ rem -------------------------------------------------------------
 
 set YII_PATH=%~dp0
 
-if "%PHP_COMMAND%" == "" set PHP_COMMAND=C:\xampp\php\php.exe
+if "%PHP_COMMAND%" == "" set PHP_COMMAND=php.exe
 
 "%PHP_COMMAND%" "%YII_PATH%yiic" %*
 

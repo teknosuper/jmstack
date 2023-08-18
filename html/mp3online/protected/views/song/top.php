@@ -130,28 +130,24 @@ $dataProvider = $model->topSong();
         ),
 
         array(
-            'header'=>'Category',
-            'name'=>'category_id',
-            'type'=>'raw',
-            'value'=>function($data)
-            {
-                if(strlen($data->category_id)>0){
-                    $id=$data->category_id;
-                    $category= Category::model()->findByPk($id);
-                    if(count($category)>0)
-                    {
-                        $name=$category->category_name;
+            'header' => 'Category',
+            'name' => 'category_id',
+            'type' => 'raw',
+            'value' => function($data) {
+                if (strlen($data->category_id) > 0) {
+                    $id = $data->category_id;
+                    $category = Category::model()->findByPk($id);
+                    if ($category !== null) { // Check if $category is not null
+                        $name = $category->category_name;
                         return $name;
-                    }
-                    else
+                    } else {
                         return '';
+                    }
                 }
-
             },
-            'filter'=>CHtml::listData(Category::model()->findAll(), 'category_id', 'category_name'),
-            'htmlOptions'=>array('style'=>' text-align: center;'),
+            'filter' => CHtml::listData(Category::model()->findAll(), 'category_id', 'category_name'),
+            'htmlOptions' => array('style' => 'text-align: center;'),
         ),
-        
         
         array(
             'header'=>'Listen',

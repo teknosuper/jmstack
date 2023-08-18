@@ -3,9 +3,9 @@
  * CButtonColumn class file.
  *
  * @author Qiang Xue <qiang.xue@gmail.com>
- * @link http://www.yiiframework.com/
+ * @link https://www.yiiframework.com/
  * @copyright 2008-2013 Yii Software LLC
- * @license http://www.yiiframework.com/license/
+ * @license https://www.yiiframework.com/license/
  */
 
 Yii::import('zii.widgets.grid.CGridColumn');
@@ -58,14 +58,20 @@ class CButtonColumn extends CGridColumn
 	 * @var string a PHP expression that is evaluated for every view button and whose result is used
 	 * as the URL for the view button. In this expression, you can use the following variables:
 	 * <ul>
-	 *   <li><code>$row</code> the row number (zero-based)</li>
-	 *   <li><code>$data</code> the data model for the row</li>
-	 *   <li><code>$this</code> the column object</li>
+	 *   <li><code>$row</code> the row number (zero-based).</li>
+	 *   <li><code>$data</code> the value provided by grid view object for the row.</li>
+	 *   <li><code>$this</code> the column object.</li>
 	 * </ul>
+	 * Type of the <code>$data</code> depends on {@link IDataProvider data provider} which is passed to the 
+	 * {@link CGridView grid view object}. In case of {@link CActiveDataProvider}, <code>$data</code> will have
+	 * object type and its values are accessed like <code>$data->property</code>. In case of 
+	 * {@link CArrayDataProvider} or {@link CSqlDataProvider}, it will have array type and its values must be
+	 * accessed like <code>$data['property']</code>.
+	 *
 	 * The PHP expression will be evaluated using {@link evaluateExpression}.
 	 *
 	 * A PHP expression can be any PHP code that has a value. To learn more about what an expression is,
-	 * please refer to the {@link http://www.php.net/manual/en/language.expressions.php php manual}.
+	 * please refer to the {@link https://www.php.net/manual/en/language.expressions.php php manual}.
 	 */
 	public $viewButtonUrl='Yii::app()->controller->createUrl("view",array("id"=>$data->primaryKey))';
 	/**
@@ -87,14 +93,20 @@ class CButtonColumn extends CGridColumn
 	 * @var string a PHP expression that is evaluated for every update button and whose result is used
 	 * as the URL for the update button. In this expression, you can use the following variables:
 	 * <ul>
-	 *   <li><code>$row</code> the row number (zero-based)</li>
-	 *   <li><code>$data</code> the data model for the row</li>
-	 *   <li><code>$this</code> the column object</li>
+	 *   <li><code>$row</code> the row number (zero-based).</li>
+	 *   <li><code>$data</code> the value provided by grid view object for the row.</li>
+	 *   <li><code>$this</code> the column object.</li>
 	 * </ul>
+	 * Type of the <code>$data</code> depends on {@link IDataProvider data provider} which is passed to the 
+	 * {@link CGridView grid view object}. In case of {@link CActiveDataProvider}, <code>$data</code> will have
+	 * object type and its values are accessed like <code>$data->property</code>. In case of 
+	 * {@link CArrayDataProvider} or {@link CSqlDataProvider}, it will have array type and its values must be
+	 * accessed like <code>$data['property']</code>.
+	 *
 	 * The PHP expression will be evaluated using {@link evaluateExpression}.
 	 *
 	 * A PHP expression can be any PHP code that has a value. To learn more about what an expression is,
-	 * please refer to the {@link http://www.php.net/manual/en/language.expressions.php php manual}.
+	 * please refer to the {@link https://www.php.net/manual/en/language.expressions.php php manual}.
 	 */
 	public $updateButtonUrl='Yii::app()->controller->createUrl("update",array("id"=>$data->primaryKey))';
 	/**
@@ -116,14 +128,20 @@ class CButtonColumn extends CGridColumn
 	 * @var string a PHP expression that is evaluated for every delete button and whose result is used
 	 * as the URL for the delete button. In this expression, you can use the following variables:
 	 * <ul>
-	 *   <li><code>$row</code> the row number (zero-based)</li>
-	 *   <li><code>$data</code> the data model for the row</li>
-	 *   <li><code>$this</code> the column object</li>
+	 *   <li><code>$row</code> the row number (zero-based).</li>
+	 *   <li><code>$data</code> the value provided by grid view object for the row.</li>
+	 *   <li><code>$this</code> the column object.</li>
 	 * </ul>
+	 * Type of the <code>$data</code> depends on {@link IDataProvider data provider} which is passed to the 
+	 * {@link CGridView grid view object}. In case of {@link CActiveDataProvider}, <code>$data</code> will have
+	 * object type and its values are accessed like <code>$data->property</code>. In case of 
+	 * {@link CArrayDataProvider} or {@link CSqlDataProvider}, it will have array type and its values must be
+	 * accessed like <code>$data['property']</code>.
+	 *
 	 * The PHP expression will be evaluated using {@link evaluateExpression}.
 	 *
 	 * A PHP expression can be any PHP code that has a value. To learn more about what an expression is,
-	 * please refer to the {@link http://www.php.net/manual/en/language.expressions.php php manual}.
+	 * please refer to the {@link https://www.php.net/manual/en/language.expressions.php php manual}.
 	 */
 	public $deleteButtonUrl='Yii::app()->controller->createUrl("delete",array("id"=>$data->primaryKey))';
 	/**
@@ -152,7 +170,7 @@ class CButtonColumn extends CGridColumn
 	 * <pre>
 	 *  array(
 	 *     class'=>'CButtonColumn',
-	 *     'afterDelete'=>'function(link,success,data){ if(success) alert("Delete completed successfuly"); }',
+	 *     'afterDelete'=>'function(link,success,data){ if(success) alert("Delete completed successfully"); }',
 	 *  ),
 	 * </pre>
 	 */
@@ -176,7 +194,7 @@ class CButtonColumn extends CGridColumn
 	 * the row.
 	 * The PHP expression will be evaluated using {@link evaluateExpression}.
 	 * A PHP expression can be any PHP code that has a value. To learn more about what an expression is,
-	 * please refer to the {@link http://www.php.net/manual/en/language.expressions.php php manual}.
+	 * please refer to the {@link https://www.php.net/manual/en/language.expressions.php php manual}.
 	 *
 	 * If the 'buttonID' is 'view', 'update' or 'delete' the options will be applied to the default buttons.
 	 *
@@ -305,13 +323,15 @@ EOD;
 	}
 
 	/**
-	 * Renders the data cell content.
+	 * Returns the data cell content.
 	 * This method renders the view, update and delete buttons in the data cell.
 	 * @param integer $row the row number (zero-based)
-	 * @param mixed $data the data associated with the row
+	 * @return string the data cell content.
+	 * @since 1.1.16
 	 */
-	protected function renderDataCellContent($row,$data)
+	public function getDataCellContent($row)
 	{
+		$data=$this->grid->dataProvider->data[$row];
 		$tr=array();
 		ob_start();
 		foreach($this->buttons as $id=>$button)
@@ -321,7 +341,7 @@ EOD;
 			ob_clean();
 		}
 		ob_end_clean();
-		echo strtr($this->template,$tr);
+		return strtr($this->template,$tr);
 	}
 
 	/**
