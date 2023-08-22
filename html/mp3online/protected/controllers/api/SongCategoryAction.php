@@ -54,29 +54,28 @@ class SongCategoryAction extends CAction
                 {
                     $image=$path.'/images/www/ic_music_node.png';
                 }
-                $sing= Singer::model()->findByPk($item->singer_id);
-                if(count($sing)>0)
-                    $singer_Name=$sing->singer_name;
-                else
+                
+                $sing = Singer::model()->findByPk($item->singer_id);
+                if ($sing !== null) { // Check if $sing is not null before counting
+                    $singer_Name = $sing->singer_name;
+                } else {
                     $singer_Name = '';
+                }
 
-                $tran = Translattions::model()->find(" model_id =".$item->song_id,"and table_name = 'song' and attribute = 'song_name' ");
-                //var_dump($tran);exit;
-                if(count($tran)>0)
-                {
+                $tran = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'song_name'");
+                if ($tran !== null) { // Check if $tran is not null before counting
                     $name_vi = $tran->value;
-                }
-                else
+                } else {
                     $name_vi = '';
-
-                $trans = Translattions::model()->find(" model_id =".$item->song_id,"and table_name = 'song' and attribute = 'lyrics' ");
-                //var_dump($trans);exit;
-                if(count($trans)>0)
-                {
-                    $lyrics_vi = $trans->value;
                 }
-                else
+
+                $trans = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'lyrics'");
+                if ($trans !== null) { // Check if $trans is not null before counting
+                    $lyrics_vi = $trans->value;
+                } else {
                     $lyrics_vi = '';
+                }
+
 
                 $data[]=array(
                     'id'=>$item->song_id,

@@ -34,26 +34,26 @@ class GetSubsAction extends CAction
         {*/
             foreach($cate as $item)
             {
-                $path = Yii::app()->getbaseUrl(true);
-                if(strlen($item->category_img)>0)
-                {
-                    $image= $path.'/images/category/'.$item->category_img;
-                }
-                else
-                {
-                    $image=$path.'/images/www/no_image.jpg';
+               $path = Yii::app()->getbaseUrl(true);
+
+                if (strlen($item->category_img) > 0) {
+                    $image = $path . '/images/category/' . $item->category_img;
+                } else {
+                    $image = $path . '/images/www/no_image.jpg';
                 }
 
                 $id = $item->category_id;
-                $tran = Translattions::model()->find(" model_id =".$id,"and table_name = 'category' and attribute = 'category_name' ");
-                if(count($tran)>0)
-                {
-                    $name_vi1= $tran->value;
-                }
-                else
-                    $name_vi1 = '';
 
-                $countSub =  Category::model()->count('parentId ='.$item->category_id);
+                $tran = Translattions::model()->find("model_id =" . $id, "and table_name = 'category' and attribute = 'category_name'");
+                if (count($tran) > 0) {
+                    $name_vi1 = $tran->value;
+                } else {
+                    $name_vi1 = '';
+                }
+
+                // The following line might be causing the error
+                $countSub = Category::model()->count('parentId =' . $item->category_id);
+
 
                 $data[] = array(
                     'id'=> $item->category_id,

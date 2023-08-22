@@ -58,30 +58,27 @@ class SongAlbumAction extends CAction
                     $image=$path.'/images/www/ic_music_node.png';
                 }
 
-                $sing= Singer::model()->findByPk($item->singer_id);
-                if(count($sing)>0)
-                    $name=$sing->singer_name;
-                else
+                $sing = Singer::model()->findByPk($item->singer_id);
+                if ($sing !== null) {
+                    $name = $sing->singer_name;
+                } else {
                     $name = '';
+                }
 
-
-                $tran = Translattions::model()->find(" model_id =".$item->song_id,"and table_name = 'song' and attribute = 'song_name' ");
-                //var_dump($tran);exit;
-                if(count($tran)>0)
-                {
+                $tran = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'song_name'");
+                if ($tran !== null) {
                     $name_vi = $tran->value;
-                }
-                else
+                } else {
                     $name_vi = '';
-
-                $trans = Translattions::model()->find(" model_id =".$item->song_id,"and table_name = 'song' and attribute = 'lyrics' ");
-                //var_dump($trans);exit;
-                if(count($trans)>0)
-                {
-                    $lyrics_vi = $trans->value;
                 }
-                else
+
+                $trans = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'lyrics'");
+                if ($trans !== null) {
+                    $lyrics_vi = $trans->value;
+                } else {
                     $lyrics_vi = '';
+                }
+
 
                 $data[]=array(
                     'id'=>$item->song_id,
