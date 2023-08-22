@@ -44,15 +44,24 @@ class GetSubsAction extends CAction
 
                 $id = $item->category_id;
 
-                $tran = Translattions::model()->find("model_id =" . $id, "and table_name = 'category' and attribute = 'category_name'");
-                if (count($tran) > 0) {
+                // $tran = Translattions::model()->find("model_id =" . $id, "and table_name = 'category' and attribute = 'category_name'");
+
+                $tran = Translattions::model()->find("model_id = :id and table_name = 'category' and attribute = 'category_name'", array(':id' => $id));
+
+
+                if ($tran !== null) {
                     $name_vi1 = $tran->value;
                 } else {
                     $name_vi1 = '';
                 }
 
+
                 // The following line might be causing the error
-                $countSub = Category::model()->count('parentId =' . $item->category_id);
+                $countSub = Category::model()->count(array(
+                    'condition' => 'parentId = :parent_id',
+                    'params' => array(':parent_id' => $item->category_id),
+                ));
+
 
 
                 $data[] = array(

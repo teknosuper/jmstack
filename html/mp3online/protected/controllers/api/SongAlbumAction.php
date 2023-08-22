@@ -65,19 +65,40 @@ class SongAlbumAction extends CAction
                     $name = '';
                 }
 
-                $tran = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'song_name'");
+                $tran = Translattions::model()->find(
+                    array(
+                        'condition' => 'model_id = :song_id AND table_name = :table_name AND attribute = :attribute',
+                        'params' => array(
+                            ':song_id' => $item->song_id,
+                            ':table_name' => 'song',
+                            ':attribute' => 'song_name',
+                        )
+                    )
+                );
+
                 if ($tran !== null) {
                     $name_vi = $tran->value;
                 } else {
                     $name_vi = '';
                 }
 
-                $trans = Translattions::model()->find("model_id =" . $item->song_id, "and table_name = 'song' and attribute = 'lyrics'");
+                $trans = Translattions::model()->find(
+                    array(
+                        'condition' => 'model_id = :song_id AND table_name = :table_name AND attribute = :attribute',
+                        'params' => array(
+                            ':song_id' => $item->song_id,
+                            ':table_name' => 'song',
+                            ':attribute' => 'lyrics',
+                        )
+                    )
+                );
+
                 if ($trans !== null) {
                     $lyrics_vi = $trans->value;
                 } else {
                     $lyrics_vi = '';
                 }
+
 
 
                 $data[]=array(
