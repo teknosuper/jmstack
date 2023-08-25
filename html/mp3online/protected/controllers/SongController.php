@@ -220,14 +220,17 @@ class SongController extends Controller
                 {
                     if(substr_count($oldLink,'http') == 0)
                     {
-                        $model->link = $linksong;                        
-                        if(file_exists(Yii::app()->basePath.'/../upload/'.$oldLink))
+                        $model->link = $linksong;  
+                        if($model->update())
                         {
-                            if($oldLink)
+                            if(file_exists(Yii::app()->basePath.'/../upload/'.$oldLink))
                             {
-                                unlink(Yii::app()->basePath.'/../upload/'.$oldLink);
-                            }
-                        }                        
+                                if($oldLink)
+                                {
+                                    unlink(Yii::app()->basePath.'/../upload/'.$oldLink);
+                                }
+                            }                        
+                        }                      
                     }
 
                 }
