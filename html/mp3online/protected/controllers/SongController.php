@@ -178,35 +178,27 @@ class SongController extends Controller
             //$name_vi = $_POST['Song']['name_vi'];
             //$lyrics_vi = $_POST['Song']['lyrics_vi'];
             $uploadedFile = CUploadedFile::getInstance($model,'link');
-            if(strlen($linksong) == 0)
-            {
-                if(is_object($uploadedFile)&& get_class($uploadedFile)=== 'CUploadedFile')
-                {                    
+
+            if (strlen($linksong) == 0) {
+                if (is_object($uploadedFile) && get_class($uploadedFile) === 'CUploadedFile') {                    
                     $name_file =  strtotime('now').rand(0,99).'.'.$uploadedFile->getExtensionName();
                     $model->link = $name_file;
-                }
-                else
-                {
+                } else {
                     $model->link = $oldLink;
                 }
-            }
-            else
-            {
-                if(count($uploadedFile) > 0)
-                {
-                    if(is_object($uploadedFile)&& get_class($uploadedFile)=== 'CUploadedFile')
-                    {                        
+            } else {
+                if (isset($uploadedFile) && count($uploadedFile) > 0) {
+                    if (is_object($uploadedFile) && get_class($uploadedFile) === 'CUploadedFile') {                        
                         $name_file =  strtotime('now').rand(0,99).'.'.$uploadedFile->getExtensionName();
                         $model->link = $name_file;
-                    }
-                    else
-                    {
+                    } else {
                         $model->link = $oldLink;
                     }
-                }
-                else
+                } else {
                     $model->link = $linksong;
+                }
             }
+
 
             $uploadedFile1 = CUploadedFile::getInstance($model,'image');
 
