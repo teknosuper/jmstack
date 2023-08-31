@@ -16,7 +16,10 @@ class SongCategoryAction extends CAction
         $allpage=ceil($numsong/$rows_per_page);
         $start_index= ($page-1)*$rows_per_page;
         $criteria = new CDbCriteria();
-        $criteria->condition='category_id ='.$categoryId;
+        if ($categoryId > 0) 
+        {
+            $criteria->condition='category_id ='.$categoryId;
+        }
         $criteria->compare('status',1);
         $criteria->order= 'order_number ASC,song_id DESC';
         $criteria->limit= $rows_per_page;
