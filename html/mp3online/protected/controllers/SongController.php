@@ -180,10 +180,10 @@ class SongController extends Controller
             $uploadedFile = CUploadedFile::getInstance($model,'link');
 
             if (strlen($linksong) == 0) {
-                if (is_object($uploadedFile) && get_class($uploadedFile) === 'CUploadedFile') {                    
+                if (is_object($uploadedFile) && get_class($uploadedFile) === 'CUploadedFile') {
                     $name_file =  strtotime('now').rand(0,99).'.'.$uploadedFile->getExtensionName();
                     $model->link = $name_file;
-                } else {
+                } else {                    
                     $model->link = $oldLink;
                 }
             } else {
@@ -195,7 +195,7 @@ class SongController extends Controller
                         $model->link = $oldLink;
                     }
                 } else {
-                    $model->link = $linksong;
+                    $model->link = $oldLink;
                 }
             }
 
@@ -213,14 +213,14 @@ class SongController extends Controller
                 $model->image = $oldImage;
             }
 
-            if($model->save())
+            if($model->update())
             {
                 //echo str_replace('protected','',Yii::app()->basePath);exit;
                 if(strlen($linksong) > 0)
                 {
                     if(substr_count($oldLink,'http') == 0)
                     {
-                        $model->link = $linksong;  
+                        // $model->link = $linksong;  
                         if($model->update())
                         {
                             if(file_exists(Yii::app()->basePath.'/../upload/'.$oldLink))
@@ -258,20 +258,20 @@ class SongController extends Controller
 
                 //}
 
-                if(!empty($uploadedFile1))
-                {
-                    if(isset($uploadedFile1)&& strlen($uploadedFile1->size)>0){
-                        if(($model->image)!= $oldImage && strlen($oldImage)>0)
-                        {
-                            if(file_exists(Yii::app()->basePath.'/../images/song/'.$oldImage))
-                            {
-                                unlink(Yii::app()->basePath.'/../images/song/'.$oldImage);
-                            }
-                            $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
-                        }
-                        $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
-                    }
-                }
+                // if(!empty($uploadedFile1))
+                // {
+                //     if(isset($uploadedFile1)&& strlen($uploadedFile1->size)>0){
+                //         if(($model->image)!= $oldImage && strlen($oldImage)>0)
+                //         {
+                //             if(file_exists(Yii::app()->basePath.'/../images/song/'.$oldImage))
+                //             {
+                //                 unlink(Yii::app()->basePath.'/../images/song/'.$oldImage);
+                //             }
+                //             $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
+                //         }
+                //         $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
+                //     }
+                // }
 
                 $this->redirect(array('admin'));
 
