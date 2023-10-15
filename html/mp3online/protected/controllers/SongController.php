@@ -220,7 +220,7 @@ class SongController extends Controller
                 {
                     if(substr_count($oldLink,'http') == 0)
                     {
-                        // $model->link = $linksong;  
+                        $model->link = $linksong;  
                         if($model->update())
                         {
                             if(file_exists(Yii::app()->basePath.'/../upload/'.$oldLink))
@@ -256,22 +256,21 @@ class SongController extends Controller
                     }
                 }
 
-                //}
 
-                // if(!empty($uploadedFile1))
-                // {
-                //     if(isset($uploadedFile1)&& strlen($uploadedFile1->size)>0){
-                //         if(($model->image)!= $oldImage && strlen($oldImage)>0)
-                //         {
-                //             if(file_exists(Yii::app()->basePath.'/../images/song/'.$oldImage))
-                //             {
-                //                 unlink(Yii::app()->basePath.'/../images/song/'.$oldImage);
-                //             }
-                //             $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
-                //         }
-                //         $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
-                //     }
-                // }
+                if(!empty($uploadedFile1))
+                {
+                    if(isset($uploadedFile1)&& strlen($uploadedFile1->size)>0){
+                        if(($model->image)!= $oldImage && strlen($oldImage)>0)
+                        {
+                            if(file_exists(Yii::app()->basePath.'/../images/song/'.$oldImage))
+                            {
+                                unlink(Yii::app()->basePath.'/../images/song/'.$oldImage);
+                            }
+                            $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
+                        }
+                        $uploadedFile1->saveAs(Yii::app()->basePath.'/../images/song/'.$name_file);
+                    }
+                }
 
                 $this->redirect(array('admin'));
 
