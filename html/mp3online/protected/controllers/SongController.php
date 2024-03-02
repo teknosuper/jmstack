@@ -195,7 +195,7 @@ class SongController extends Controller
                         $model->link = $oldLink;
                     }
                 } else {
-                    $model->link = $oldLink;
+                    $model->link = $linksong;
                 }
             }
 
