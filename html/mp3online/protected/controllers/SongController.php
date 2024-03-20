@@ -106,13 +106,7 @@ class SongController extends Controller
             }
             else
             {
-                if(is_object($uploadedFile)&& get_class($uploadedFile)=== 'CUploadedFile')
-                {                    
-                    $name_file =  strtotime('now').rand(0,99).'.'.$uploadedFile->getExtensionName();
-                    $model->link = $name_file;
-                }
-                else
-                    $model->link = $linksong;
+                $model->link = $linksong;
             }
 
             $uploadedFile1 = CUploadedFile::getInstance($model,'image');
@@ -121,16 +115,22 @@ class SongController extends Controller
                 $name_file =  strtotime('now').rand(0,99).'.'.$uploadedFile1->getExtensionName();
                 $model->image = $name_file;
             }
-
+            
             if($model->save())
             {
-                /*if(strlen($linksong) == 0)
-                {*/
+
+                if(strlen($linksong) == 0)
+                {
                     if(isset($uploadedFile) && strlen($uploadedFile->size)>0)
                     {
                         $uploadedFile->saveAs(Yii::app()->basePath.'/../upload/'.$model->link);
                     }
-                //}
+                }
+                else
+                {
+                    $model->link = $linksong;
+                    $model->update();
+                }
 
                 if(isset($uploadedFile1) && strlen($uploadedFile1->size)>0)
                 {
